@@ -5,6 +5,7 @@ window.onload = function () {
     $('.parallax').parallax();
     $('.scrollspy').scrollSpy();
     $('.tooltipped').tooltip();
+    $('.materialboxed').materialbox();
 
     /* Initialize Firebase */
 
@@ -19,6 +20,11 @@ window.onload = function () {
         measurementId: "G-5RK12N8Q6N"
     });
 
+
+    /* Initialize Firebase Firestore */
+
+    var db = firebase.firestore();
+
     /* Authentication */
 
     firebase.auth().languageCode = 'en';
@@ -27,7 +33,8 @@ window.onload = function () {
         firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function (result) {
             var token = result.credential.accessToken;
             var user = result.user;
-            $('#page-content').html('<h1>Welcome, ' + user.displayName + '!</h1>');
+            $('#page-content').css('display', 'none');
+            $('#signed-in-content').css('display', 'block');
         }).catch(function (error) {
             alert('Sign in unsuccessful!');
         });
