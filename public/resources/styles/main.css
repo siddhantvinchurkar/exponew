@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons&display=swap');
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+nav {
+    background-color: #FFFFFF !important;
+    position: fixed !important;
+    top: 0;
+    z-index: 5;
+    margin-bottom: 3em !important;
+}
+
+nav ul li a {
+    color: #000000 !important;
+    font-weight: bolder !important;
+}
+
+nav .nav-wrapper a {
+    color: #000000 !important;
+    font-weight: bolder !important;
+}
+
+nav .nav-wrapper a i {
+    color: #FFFFFF !important;
+    font-weight: bolder !important;
+}
+
+nav .nav-wrapper .btn {
+    color: #FFFFFF !important;
+    font-weight: bolder !important;
+}
