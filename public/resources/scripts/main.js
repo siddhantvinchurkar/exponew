@@ -4,6 +4,7 @@ window.onload = function () {
 
     $('.parallax').parallax();
     $('.scrollspy').scrollSpy();
+    $('.tooltipped').tooltip();
 
     /* Initialize Firebase */
 
@@ -21,13 +22,12 @@ window.onload = function () {
     /* Authentication */
 
     firebase.auth().languageCode = 'en';
-    var provider = new firebase.auth.GoogleAuthProvider();
 
     $('#sign-in').click(function () {
-        firebase.auth().signInWithPopup(provider).then(function (result) {
+        firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function (result) {
             var token = result.credential.accessToken;
             var user = result.user;
-            alert('Welcome, ' + user.displayName);
+            $('#page-content').html('<h1>Welcome, ' + user.displayName + '!</h1>');
         }).catch(function (error) {
             alert('Sign in unsuccessful!');
         });

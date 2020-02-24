@@ -36,3 +36,12 @@ nav .nav-wrapper .btn {
     color: #FFFFFF !important;
     font-weight: bolder !important;
 }
+
+#page-content{
+    padding-top: 3em !important;
+    display: none;
+}
+
+#signed-in-content{
+    padding-top: 10em !important;
+}
