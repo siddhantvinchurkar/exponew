@@ -39,9 +39,9 @@ nav .nav-wrapper .btn {
 
 #page-content{
     padding-top: 3em !important;
-    display: none;
 }
 
 #signed-in-content{
     padding-top: 10em !important;
+    display: none;
 }
