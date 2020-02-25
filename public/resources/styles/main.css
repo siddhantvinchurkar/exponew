@@ -45,3 +45,16 @@ nav .nav-wrapper .btn {
     padding-top: 10em !important;
     display: none;
 }
+
+#view-cart{
+    display: none;
+}
+
+#sign-out{
+    display: none;
+}
+
+#cart{
+    padding-top: 5em !important;
+    display: none;
+}
