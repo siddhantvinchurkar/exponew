@@ -1,5 +1,6 @@
 var cart = [];
 var dets = [];
+var cart_bool = false;
 
 /* Function to add elments to the  cart */
 
@@ -76,26 +77,29 @@ window.onload = function () {
     });
 
     $('#view-cart').click(function () {
-        $('#signed-in-content').css('display', 'none');
-        $('#cart').css('display', 'block');
-        for (var t = 0; t < cart.length; t++) {
-            db.collection('products').doc(cart[t]).get().then(function (doc) {
-                dets.push('<tr><td>' + doc.data().product_name + '</td><td>₹ ' + doc.data().product_price_dsctd + '</td><td>4</td><td>₹ ' + doc.data().product_price_dsctd + '</td></tr>');
-            }).catch(function (error) { console.error(error); });
-        }
-        setTimeout(function () {
-            var cart_string_1 = '<div class="row"><div class="col s12 m12 l8 xl8 offset-l2 offset-xl2"><h1>Shopping Cart</h1><table class="responsive-table highlight"><thead><tr><th>Item Name</th><th>Price</th><th>Quantity</th><th>Amount</th></tr></thead><tbody>';
-            for (var h = 0; h < dets.length; h++) {
-                cart_string_1 += dets[h];
+        if (!cart_bool) {
+            cart_bool = true;
+            $('#signed-in-content').css('display', 'none');
+            $('#cart').css('display', 'block');
+            for (var t = 0; t < cart.length; t++) {
+                db.collection('products').doc(cart[t]).get().then(function (doc) {
+                    dets.push('<tr><td>' + doc.data().product_name + '</td><td>₹ ' + doc.data().product_price_dsctd + '</td><td>4</td><td>₹ ' + doc.data().product_price_dsctd + '</td></tr>');
+                }).catch(function (error) { console.error(error); });
             }
-            var cart_string_2 = '</tbody></table> <br /> <a id="checkout" class="right pink accent-3 waves-effect waves-light btn-large"><i class="material-icons left">payment</i><b>Checkout ₹ 2,400</b></a> <a id="add-more" class="left pink accent-3 waves-effect waves-light btn-large"><i class="material-icons left">add_shopping_cart</i><b>Add More Items</b></a></div></div>';
-            $('#cart').html(cart_string_1 + cart_string_2);
-        }, 2000);
-    });
-
-    $('#add-more').click(function () {
-        $('#signed-in-content').css('display', 'block');
-        $('#cart').css('display', 'none');
+            setTimeout(function () {
+                var cart_string_1 = '<div class="row"><div class="col s12 m12 l8 xl8 offset-l2 offset-xl2"><h1>Shopping Cart</h1><table class="responsive-table highlight"><thead><tr><th>Item Name</th><th>Price</th><th>Quantity</th><th>Amount</th></tr></thead><tbody>';
+                for (var h = 0; h < dets.length; h++) {
+                    cart_string_1 += dets[h];
+                }
+                var cart_string_2 = '</tbody></table> <br /> <a id="checkout" class="right pink accent-3 waves-effect waves-light btn-large"><i class="material-icons left">payment</i><b>Checkout ₹ 2,400</b></a> <a id="add-more" class="left pink accent-3 waves-effect waves-light btn-large"><i class="material-icons left">add_shopping_cart</i><b>Add More Items</b></a></div></div>';
+                $('#cart').html(cart_string_1 + cart_string_2);
+                $('#add-more').click(function () {
+                    cart_bool = false;
+                    $('#signed-in-content').css('display', 'block');
+                    $('#cart').css('display', 'none');
+                });
+            }, 2000);
+        }
     });
 
     setInterval(function () {
